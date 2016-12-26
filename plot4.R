@@ -16,13 +16,17 @@ data2$tot_time <- as.POSIXct(data2[,c(10)])
 
 rm(data)
 
-## Plotting the third graph into a png file
+## Plotting the forth graph into a png file
 
-png(file = "plot3.png")
+png(file = "plot4.png")
+par(mfrow = c(2,2))
 with(data2, {
+	plot(tot_time, Global_active_power, type = "l", ylab = "Global Active Power", xlab = "")
+	plot(tot_time, Voltage, type = "l", ylab = "Global Active Power", xlab = "datetime")
 	plot(tot_time, Sub_metering_1, type = "l", ylab = "Energy sub etering", xlab = "")
 	lines(tot_time, Sub_metering_2, col = "red")
 	lines(tot_time, Sub_metering_3, col = "blue")
-	legend("topright", col = c("black", "red", "blue"), lty = 1, legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
+	legend("topright", box.lty = 0, col = c("black", "red", "blue"), lty = 1, legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
+	plot(tot_time, Global_reactive_power, type = "l", xlab = "datetime")
 })
 dev.off()
